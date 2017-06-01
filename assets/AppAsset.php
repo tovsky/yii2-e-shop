@@ -20,20 +20,22 @@ class AppAsset extends AssetBundle
     public $css = [
 //         'css/site.css',      // Это к оригинальному файлу стилю. Нам не нужно.
 //        'css/bootstrap.min.css',
-        'css/font-awesome.min.css',
-        'css/prettyPhoto.css',
-        'css/price-range.css',
-        'css/animate.css',
-        'css/main.css',
-        'css/responsive.css',
+        '/web/css/font-awesome.min.css',
+        '/web/css/prettyPhoto.css',
+        '/web/css/price-range.css',
+        '/web/css/animate.css',
+        '/web/css/main.css',
+        '/web/css/responsive.css',
     ];
     public $js = [
 //        'js/jquery.js',
 //        'js/bootstrap.min.js',
-        'js/jquery.scrollUp.min.js',
-        'js/price-range.js',
-        'js/jquery.prettyPhoto.js',
-        'js/main.js',
+        '/web/js/jquery.scrollUp.min.js',
+        '/web/js/price-range.js',
+        '/web/js/jquery.prettyPhoto.js',
+        '/web/js/jquery.cookie.js',                  // Используется для запоминания в куки открытой вкладки акордоена MenuWidget
+        '/web/js/jquery.accordion.js',              // Испольльзуется в MenuWidget
+        '/web/js/main.js',
     ];
     public $depends = [                     // Здесь указываются зависимости от скриптов.  Yii автоматом должен убедиться, что эти скрипты подключены.
         'yii\web\YiiAsset',
