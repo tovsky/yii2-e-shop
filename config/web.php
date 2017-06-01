@@ -6,6 +6,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru-Ru',              // Задаем язык для всего приложения    теперь указав в шаблоне <html lang="<?= Yii::$app->language  ">     язык будет автоматом подтягиваться
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
