@@ -24,4 +24,15 @@ class CategoryController extends AppController
         // Теперь массив   hits  будет доступен в виде, там можем пройтись по нему циклом и вывести нужные значения.
         return $this->render('index', compact('hits'));
     }
+
+    public function actionView($id)
+    {
+        // Для получения параметра id из массива get  мы можем  $_GET['id']  и это должно работать
+        // Но правильнее использовать класс Request и его метод get()
+        $id = Yii::$app->request->get('id');
+        // debug($id);      // Отладочная печать, проверить, что получаем   id
+        $products = Product::find()->where(['category_id' => $id])->all();
+        return $this->render('view', compact('products'));
+    }
+
 }
