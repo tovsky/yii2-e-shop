@@ -1,5 +1,6 @@
 <?php 
 use yii\helpers\Html;
+use yii\widgets\LinkPager;
 
 // $this->title = 'My Yii Application'          // Это старый способ установки   title.   Он теперь не нужен, так как задаем в контролере.
 ?>
@@ -90,17 +91,23 @@ use yii\helpers\Html;
                                 <div class="clearfix"></div>    <!-- 2 вариант. Каждые 3 карточки товара вставлять в строку.  -->
                             <?php endif ?>
                         <?php endforeach; ?>
+                        <div class="clearfix"></div>
+                        <?php
+                            echo LinkPager::widget([
+                                'pagination' => $pages,
+                            ]);
+                        ?>
                     <?php else : ?>
                         <h2>Здесь товаров пока нет.</h2>
                     <?php endif ?>
 
-                    <div class="clearfix"></div>                <!-- Чтобы блок с пагинацией не заползал на карточки товаров -->
-                    <ul class="pagination">
-                        <li class="active"><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">&raquo;</a></li>
-                    </ul>
+<!--                    <div class="clearfix"></div> -->               <!-- Чтобы блок с пагинацией не заползал на карточки товаров -->
+<!--                    <ul class="pagination">-->
+<!--                        <li class="active"><a href="">1</a></li>-->
+<!--                        <li><a href="">2</a></li>-->                    <!-- Этот блок с пагинацией отключили, так как выше стали использовать widget/PagesHellper -->
+<!--                        <li><a href="">3</a></li>-->
+<!--                        <li><a href="">&raquo;</a></li>-->
+<!--                    </ul>-->
                 </div><!--features_items-->
             </div>
         </div>
