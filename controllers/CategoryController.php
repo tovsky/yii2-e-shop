@@ -22,6 +22,7 @@ class CategoryController extends AppController
         // debug($hits);   // Распечатка для отладки
         // Значение переменной передаем в вид с помощью ф-ции compact() , но можно массивом.
         // Теперь массив   hits  будет доступен в виде, там можем пройтись по нему циклом и вывести нужные значения.
+        $this->setMeta('E_SHOPPER');
         return $this->render('index', compact('hits'));
     }
 
@@ -32,7 +33,10 @@ class CategoryController extends AppController
         $id = Yii::$app->request->get('id');
         // debug($id);      // Отладочная печать, проверить, что получаем   id
         $products = Product::find()->where(['category_id' => $id])->all();
-        return $this->render('view', compact('products'));
+        $category = Category::findOne($id);                                         // получаем название категории из таблицы
+        $this->setMeta('E_SHOPPER | ' . $category->name, $category->keywords, $category->description);      // Из таблицы получаем значения метатегов.
+
+        return $this->render('view', compact('products', 'category'));
     }
 
 }

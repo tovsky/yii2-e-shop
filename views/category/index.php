@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 use yii\helpers\Html;
-$this->title = 'My Yii Application';
+//  $this->title = 'My Yii Application';    // Это старый способ установки   title.   Он теперь не нужен, так как задаем в контролере.
 
 ?>
 
