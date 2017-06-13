@@ -49,6 +49,7 @@ $config = [
                 'category/<id:\d+>/page/<page:\d+>' => 'category/view',         // это правило для чпу страниц категорий    http://yii2.loc/category/29/page/2
                 'category/<id:\d+>' => 'category/view',
                 'product/<id:\d+>' => 'product/view',                           // это правило для чпу страницы карточки товара
+                'search' => 'category/search',
             ],
         ],
 

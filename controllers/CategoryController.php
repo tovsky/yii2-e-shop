@@ -54,4 +54,15 @@ class CategoryController extends AppController
         return $this->render('view', compact('products', 'pages', 'category'));
     }
 
+    public function actionSearch()
+    {
+        // получаем данные для поиска
+        $q = trim(Yii::$app->request->get('q'));         // trim() чистит пробелы
+        $this->setMeta('E_SHOPPER | Поиск: ' . $q);      // Из таблицы получаем значения метатегов.
+        if (!$q) return $this->render('search');        // Если пустая строка, то без запроса к БД
+        $query = Product::find()->where(['like', 'name', $q]);
+        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 3, 'forcePageParam' => false, 'pageSizeParam' => false]);
+        $products = $query->offset($pages->offset)->limit($pages->limit)->all();
+        return $this->render('search', compact('products', 'pages', 'q'));
+    }
 }

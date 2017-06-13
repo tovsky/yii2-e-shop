@@ -5,11 +5,12 @@ namespace app\controllers;
 use app\models\Category;
 use app\models\Product;
 use Yii;
+use yii\data\Pagination;
 use yii\web\HttpException;
 
 class ProductController extends AppController
 {
-    public function actionView($id)
+    public function actionView($id)         // Здесь параметр получается из строки запроса (его разбирает роутер), а можно из массива GET
     {
             // Получаем id товара из массива  GET.
         $id = Yii::$app->request->get('id');
