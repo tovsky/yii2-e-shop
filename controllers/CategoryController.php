@@ -12,6 +12,7 @@ use app\models\Category;
 use app\models\Product;
 use Yii;
 use yii\data\Pagination;
+use yii\web\HttpException;
 
 class CategoryController extends AppController
 {
@@ -32,6 +33,12 @@ class CategoryController extends AppController
         // Для получения параметра id из массива get  мы можем  $_GET['id']  и это должно работать
         // Но правильнее использовать класс Request и его метод get()
         $id = Yii::$app->request->get('id');
+
+        $category = Category::findOne($id);                                         // получаем название категории из таблицы
+            // если мы не получили данные категории, то выбрасываем ошибку.
+        if (empty($category))
+            throw new HttpException(404, 'Такой категории нет');
+
         // debug($id);      // Отладочная печать, проверить, что получаем   id
 //        $products = Product::find()->where(['category_id' => $id])->all();     // Продукты будем получать через пагинацию ниже.
         $query = Product::find()->where(['category_id' => $id]);
@@ -42,7 +49,6 @@ class CategoryController extends AppController
             'pageSizeParam' => false,
         ]);                 //  По умолчанию около 20 записей, но у нас товаров мало и для наглядности сделаем 3
         $products = $query->offset($pages->offset)->limit($pages->limit)->all();
-        $category = Category::findOne($id);                                         // получаем название категории из таблицы
         $this->setMeta('E_SHOPPER | ' . $category->name, $category->keywords, $category->description);      // Из таблицы получаем значения метатегов.
 
         return $this->render('view', compact('products', 'pages', 'category'));
