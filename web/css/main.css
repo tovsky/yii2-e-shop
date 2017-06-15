@@ -1179,7 +1179,9 @@ h2.title {
   margin-top: 10px;
 }
 
-
+.del-item {
+  cursor: pointer;
+}
 
 .view-product {
   position: relative;

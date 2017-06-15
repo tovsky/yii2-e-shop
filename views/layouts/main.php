@@ -107,7 +107,7 @@ ltAppAsset::register($this);              // Регистрируем наш к�
                             <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="#" onclick="return getCart()"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
                         </ul>
                     </div>
@@ -322,6 +322,19 @@ ltAppAsset::register($this);              // Регистрируем наш к�
     </div>
 
 </footer><!--/Footer-->
+
+<?php
+    \yii\bootstrap\Modal::begin([
+        'header' => '<h2>Ваша корзина</h2>',
+        'id' => 'cart',
+        'size' => 'modal-lg',
+        'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
+            <a href="' . \yii\helpers\Url::to(['cart/view']) . '" class="btn btn-success">Оформить заказ</a> 
+            <button type="button" class="btn btn-danger" onclick="clearCart()">Очистить корзину</button>'
+    ]);
+
+    \yii\bootstrap\Modal::end();
+?>
 
 <?php $this->endBody() ?>           <!-- Метка перед закрывающим тегом  -->
 </body>
