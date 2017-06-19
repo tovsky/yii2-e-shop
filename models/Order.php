@@ -6,6 +6,7 @@ use yii\db\ActiveRecord;
 use Yii;
     // Также будет использоваться поведение
 use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "order".
@@ -29,6 +30,23 @@ class Order extends ActiveRecord
     public static function tableName()
     {
         return 'order';
+    }
+
+    public function behaviors()     // Данный метод должен нам возвращать массив с конфигурацией нашего поведения.
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                        // Поведение будет срабатывать перед вставкой в поля 'created_at', 'updated_at'
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                        // Здесь поведение будет срабатывать перед обновлением  поля  'updated_at'
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                        // Поведение TimestampBehavior заполняет обозначенные поля меткой времени UNIX (по умолчанию)
+                ],
+                'value' => new Expression('NOW()'),     // Чтобы время было понятного для нас формата
+            ],
+        ];
     }
 
     public function getOrderItems()
