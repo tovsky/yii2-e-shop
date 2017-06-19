@@ -98,6 +98,13 @@ class CartController extends AppController
                 $this->saveOrderItems($session['cart'], $order->id);
                     // Для целостности данных нужно использовать механизм ТРАНЗАКЦИЙ (в этом курсе не рассмотренно)
                 Yii::$app->session->setFlash('success', 'Ваш заказ принят. Скоро мы с Вами свяжемся для уточнения деталей.');
+                        // Отправка письма клиенту. Для отпавки письма админу продублировать код
+                    Yii::$app->mailer->compose('order', ['session' => $session])
+                        ->setFrom(['test@mail.ru' => 'yii2.loc'])
+                        ->setTo($order->email)
+                        ->setSubject('Заказ')
+                        ->send();
+
                     // Если у нас все сохранено, то перед рефреш, очистим корзину
                     $session->remove('cart');
                     $session->remove('cart.qty');
