@@ -8,6 +8,14 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'ru-Ru',              // Задаем язык для всего приложения    теперь указав в шаблоне <html lang="<?= Yii::$app->language  ">     язык будет автоматом подтягиваться
     'defaultRoute' => 'category/index',
+    'modules' => [
+            // модуль  с именем   'admin'
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+                // Указываем в явном виде, какой шаблон использовать 
+            'layout' => 'admin'
+        ],
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -20,6 +28,9 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+                // Для незарегистрированного пользователя автоматом перенаправляет на 'site/login'
+                // Мы можем поменять (например на   контроллер  cart   экшн  index)
+            //'loginUrl' => 'cart'
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

@@ -20,20 +20,20 @@ ltAppAsset::register($this);              // Регистрируем наш к�
     <meta charset="<?= Yii::$app->charset ?>">              <!--  -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>             <!-- Спец метатег для безопасности отправки данных с форм -->
-    <title><?= Html::encode($this->title) ?></title>
+    <title>Админка | <?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 
     <?php
-//        $this->registerJsFile('js/html5shiv.js',              // подключение скрипта по условию можно в отдельном файле   use app\assets\ltAppAsset;
-//            ['position' => yii\web\View::POS_HEAD,            // А можно вот так прямо в файле шаблона
-//                'condition' => 'lte IE9'
-//            ]);
+    //        $this->registerJsFile('js/html5shiv.js',              // подключение скрипта по условию можно в отдельном файле   use app\assets\ltAppAsset;
+    //            ['position' => yii\web\View::POS_HEAD,            // А можно вот так прямо в файле шаблона
+    //                'condition' => 'lte IE9'
+    //            ]);
     ?>
 
-<!--    <!--[if lt IE 9]>-->                            <!-- Выше подключили файл по условию   use app\assets\ltAppAsset; -->
-<!--    <script src="js/html5shiv.js"></script>-->
-<!--    <script src="js/respond.min.js"></script>-->
-<!--    <![endif]-->
+    <!--    <!--[if lt IE 9]>-->                            <!-- Выше подключили файл по условию   use app\assets\ltAppAsset; -->
+    <!--    <script src="js/html5shiv.js"></script>-->
+    <!--    <script src="js/respond.min.js"></script>-->
+    <!--    <![endif]-->
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -104,14 +104,14 @@ ltAppAsset::register($this);              // Регистрируем наш к�
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                                <!-- Проверка условия, что если пользователь не с ролью Гость тогда будет кнопка выхода -->
+                            <!-- Проверка условия, что если пользователь не с ролью Гость тогда будет кнопка выхода -->
                             <?php if (!Yii::$app->user->isGuest) : ?>
                                 <li><a href="<?= \yii\helpers\Url::to(['/site/logout']) ?>"><i class="fa fa-user"></i> <?= Yii::$app->user->identity['username'] ?> Выход</a></li>
                             <?php endif; ?>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="#" onclick="return getCart()"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="<?= \yii\helpers\Url::to('/admin') ?>"><i class="fa fa-lock"></i> Login</a></li>
+                            <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
                         </ul>
                     </div>
                 </div>
@@ -325,19 +325,6 @@ ltAppAsset::register($this);              // Регистрируем наш к�
     </div>
 
 </footer><!--/Footer-->
-
-<?php
-    \yii\bootstrap\Modal::begin([
-        'header' => '<h2>Ваша корзина</h2>',
-        'id' => 'cart',
-        'size' => 'modal-lg',
-        'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
-            <a href="' . \yii\helpers\Url::to(['cart/view']) . '" class="btn btn-success">Оформить заказ</a> 
-            <button type="button" class="btn btn-danger" onclick="clearCart()">Очистить корзину</button>'
-    ]);
-
-    \yii\bootstrap\Modal::end();
-?>
 
 <?php $this->endBody() ?>           <!-- Метка перед закрывающим тегом  -->
 </body>
