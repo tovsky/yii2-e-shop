@@ -13,7 +13,8 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Module',
                 // Указываем в явном виде, какой шаблон использовать 
-            'layout' => 'admin'
+            'layout' => 'admin',
+            'defaultRoute' => 'order/index'
         ],
     ],
     'components' => [
