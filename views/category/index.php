@@ -116,7 +116,7 @@ use yii\helpers\Html;
             <div class="col-sm-9 padding-right">
                 <?php if (!empty($this)) : ?>
                 <div class="features_items"><!--features_items-->
-                    <h2 class="title text-center">Features Items</h 2>
+                    <h2 class="title text-center">Features Items</h2>
                     <?php foreach ($hits as $hit) : ?>
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
